@@ -1,0 +1,75 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React Tutorial</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/remarkable@1.6.2/dist/remarkable.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+    
+		var CONTACTS = [
+			{
+				id: 0,
+				name: 'vasya',
+				number: 80974563211
+			},
+			{
+				id: 1,
+				name: 'petya',
+				number: 80975553211
+			},
+			{
+				id: 2,
+				name: 'colya',
+				number: 8097555511
+			}
+		];
+
+        var Contact = React.createClass({
+            render: function () {
+                return (
+                    <li className="list-i">
+                        <div>{this.props.name}</div>
+                        <div>{this.props.number}</div>
+                    </li>
+                )
+            }
+        });
+
+	 	var ContactsList = React.createClass({
+    		render: function () {
+    			return (
+    				<div>
+    					<ul>
+                            {
+                                CONTACTS.map(function(el) {
+                                    return <Contact 
+                                        key={el.id} 
+                                        name={el.name} 
+                                        number={el.number}/>;
+                                })
+                            }
+                        </ul>
+    				</div>
+    			);
+    		}
+    	});
+
+	 	ReactDOM.render(
+    		<div>
+	    		<ContactsList />
+    		</div>,
+    		document.getElementById('content')
+		);
+
+    </script>
+  </body>
+</html>
