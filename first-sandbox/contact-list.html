@@ -19,24 +19,28 @@
 			{
 				id: 0,
 				name: 'vasya',
-				number: 80974563211
+				number: 80974563211,
+                img: 'http://ru.seaicons.com/wp-content/uploads/2016/06/Mighty-Man-Zoomed-icon.png'
 			},
 			{
 				id: 1,
 				name: 'petya',
-				number: 80975553211
+				number: 80975553211,
+                img: 'http://www.uidownload.com/files/169/726/547/avatar-business-costume-male-man-office-work-icon.png'
 			},
 			{
 				id: 2,
 				name: 'colya',
-				number: 8097555511
+				number: 8097555511,
+                img: 'https://cdn2.iconfinder.com/data/icons/avatars-vol-1-1/64/avatar-black-man-professor-128.png'
 			}
 		];
 
         var Contact = React.createClass({
             render: function () {
                 return (
-                    <li className="list-i" id={this.props.id}>
+                    <li className="list-i">
+                        <img src={this.props.img} />
                         <p>{this.props.name}</p>
                         <p>{this.props.number}</p>
                     </li>
@@ -52,8 +56,9 @@
                             {
                                 CONTACTS.map(function(el) {
                                     return <Contact
-                                        id={el.id} 
+                                        key={el.id}
                                         name={el.name} 
+                                        img={el.img}
                                         number={el.number}/>;
                                 })
                             }
