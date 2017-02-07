@@ -49,12 +49,29 @@
         });
 
 	 	var ContactsList = React.createClass({
+            getInitialState: function () {
+                return {
+                    displayedContacts: CONTACTS
+                }
+            },
+            handleChange: function (event) {
+                var searchQuery = event.target.value.toLowerCase(),
+                    displayedContacts = CONTACTS.filter(function(el) {
+                        var searchValue = el.name.toLowerCase()
+                        return searchValue.indexOf(searchQuery) != -1;
+                    });
+
+                this.setState({
+                    displayedContacts:displayedContacts
+                });
+            },
     		render: function () {
     			return (
-    				<div>
+                    <div className="contacts">
+                    <input className="contacts-input" type="text" onChange={this.handleChange} />
     					<ul>
                             {
-                                CONTACTS.map(function(el) {
+                                this.state.displayedContacts.map(function(el) {
                                     return <Contact
                                         key={el.id}
                                         name={el.name} 
